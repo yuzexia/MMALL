@@ -1,0 +1,8 @@
+{
+  "name": "MMALL",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:yuzexia/MMALL.git",
+  "author": "yuzexia <327932801@qq.com>",
+  "license": "MIT"
+}
