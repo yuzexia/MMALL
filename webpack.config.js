@@ -2,7 +2,7 @@
  * @Author: yuze.xia 
  * @Date: 2021-04-01 15:31:31 
  * @Last Modified by: yuze.xia
- * @Last Modified time: 2021-04-01 20:36:41
+ * @Last Modified time: 2021-04-01 20:44:47
  */
 const path = require('path');
 const webpack = require('webpack');
@@ -15,6 +15,7 @@ module.exports = {
     // 出口文件
     output: {
         path: path.resolve(__dirname, './dist'),
+        publicPath: '/dist/',
         filename: 'js/app.js'
     },
     module: {
@@ -96,5 +97,8 @@ module.exports = {
             name: 'common',
             filename: 'js/base.js'
         })
-    ]
+    ],
+    devServer: {
+        port: 8086
+    }
 };
