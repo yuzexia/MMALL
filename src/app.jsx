@@ -2,7 +2,7 @@
  * @Author: yuze.xia 
  * @Date: 2021-04-29 15:03:27 
  * @Last Modified by: yuze.xia
- * @Last Modified time: 2021-04-29 15:53:02
+ * @Last Modified time: 2021-04-29 16:25:01
  */
 
 import React from 'react';
@@ -11,15 +11,18 @@ import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-ro
 
 // 页面
 import Home from 'page/home/index.jsx';
+import Layout from 'component/layout/index.jsx';
 
 class App extends React.Component{
     render() {
         return (
             <Router>
-                <Switch>
-                    <Route exact path="/" component={Home}/>
-                    <Redirect from="*" to="/"/>
-                </Switch>
+                <Layout>
+                    <Switch>
+                        <Route exact path="/" component={Home}/>
+                        <Redirect from="*" to="/"/>
+                    </Switch>
+                </Layout>
             </Router>
         )
     }
