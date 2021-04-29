@@ -2,7 +2,7 @@
  * @Author: yuze.xia 
  * @Date: 2021-04-01 15:31:31 
  * @Last Modified by: yuze.xia
- * @Last Modified time: 2021-04-29 15:16:32
+ * @Last Modified time: 2021-04-29 16:16:41
  */
 const path = require('path');
 const webpack = require('webpack');
@@ -104,6 +104,9 @@ module.exports = {
         })
     ],
     devServer: {
-        port: 8086
+        port: 8086,
+        historyApiFallback:{
+            index: '/dist/index.html'
+        }
     }
 };
