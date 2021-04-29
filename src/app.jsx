@@ -1,32 +1,31 @@
 /*
  * @Author: yuze.xia 
- * @Date: 2021-04-01 15:32:05 
+ * @Date: 2021-04-29 15:03:27 
  * @Last Modified by: yuze.xia
- * @Last Modified time: 2021-04-03 00:32:11
+ * @Last Modified time: 2021-04-29 15:53:02
  */
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-router-dom'
 
-//引入css
-import './index.css';
-import './index.less';
-// 引入字体图标库
-import 'font-awesome/css/font-awesome.min.css'
+// 页面
+import Home from 'page/home/index.jsx';
 
-let style ={
-    color: 'red',
-    fontSize: '30px'
+class App extends React.Component{
+    render() {
+        return (
+            <Router>
+                <Switch>
+                    <Route exact path="/" component={Home}/>
+                    <Redirect from="*" to="/"/>
+                </Switch>
+            </Router>
+        )
+    }
 }
 
-let flag = true;
-
-let jsx = (
-    <div className="jsx" style={style}>
-        <h1>Hello MMall</h1>
-    </div>
-);
 ReactDOM.render(
-    jsx,
+    <App />,
     document.getElementById('app')
 );

@@ -2,7 +2,7 @@
  * @Author: yuze.xia 
  * @Date: 2021-04-01 15:31:31 
  * @Last Modified by: yuze.xia
- * @Last Modified time: 2021-04-01 20:44:47
+ * @Last Modified time: 2021-04-29 15:16:32
  */
 const path = require('path');
 const webpack = require('webpack');
@@ -17,6 +17,11 @@ module.exports = {
         path: path.resolve(__dirname, './dist'),
         publicPath: '/dist/',
         filename: 'js/app.js'
+    },
+    resolve: {
+        alias: { // 文件别名
+            page: path.resolve(__dirname, 'src/page')
+        }
     },
     module: {
         rules: [
