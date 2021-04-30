@@ -18,6 +18,7 @@ body {
 }
 
 #page-wrapper {
+	margin: 0 0 0 260px;
 	padding: 15px 15px;
 }
 
@@ -78,7 +79,7 @@ p {
 	width: 260px;
 	top: 60px;
     bottom: 0;
-    overflow-y: hidden;
+    overflow-y: auto;
     background: #32323a ;
 }
 
@@ -404,7 +405,10 @@ footer p {
 	position: relative;
 	display: inline-block;
 	margin: 0px;
-	padding: 0px;
+	padding: 0px 10px;
+}
+.top-navbar .nav > li:hover .dropdown-menu{
+	display: block;
 }
 
 .top-navbar .nav > li > a {
@@ -422,7 +426,8 @@ footer p {
 }
 
 .top-navbar .dropdown-menu {
-	min-width: 230px;
+ 	min-width: 230px;
+	top: 98%;
 	border-radius: 0 0 4px 4px;
 }
 
@@ -532,6 +537,10 @@ ul.nav.nav-second-level.collapse.in {
 .top-navbar .nav > li > a > i {
 	margin-right: 2px;
 }
+.top-navbar .nav > li > a > span{
+	margin-right: 5px;
+	color: #666;
+}
 
 .top-navbar .navbar-brand:hover {
 	color: #2DAFCB;
@@ -547,7 +556,7 @@ ul.nav.nav-second-level.collapse.in {
 }
 
 .navbar-header {
-	background: transparent;
+	background: #32323a;
 }
 
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
@@ -585,7 +594,13 @@ ul.nav.nav-second-level.collapse.in {
     MEDIA QUERIES     
 ------------------------------------------------*/
  
-@media(min-width:768px) {
+@media(max-width:768px) {
+	.top-navbar{
+		position: relative;
+	}
+	.to-navbar .navbar-brand{
+		width: 100%;
+	}
 	#page-wrapper {
 		margin: 0 0 0 260px;
 		padding: 15px 30px;
@@ -593,9 +608,15 @@ ul.nav.nav-second-level.collapse.in {
 
 	.navbar-side {
 		z-index: 1;
-		width: 260px;
+		width: 100%;
+		position: relative;
+		top: 0;
 	}
-
+	#page-wrapper {
+		margin: 0;
+		padding: 15px 30px;
+		top: 0;
+	}
 	.navbar {
 		border-radius: 0px;
 	}
