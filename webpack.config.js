@@ -2,7 +2,7 @@
  * @Author: yuze.xia 
  * @Date: 2021-04-01 15:31:31 
  * @Last Modified by: yuze.xia
- * @Last Modified time: 2021-04-29 16:22:49
+ * @Last Modified time: 2021-05-02 15:09:57
  */
 const path = require('path');
 const webpack = require('webpack');
@@ -94,7 +94,8 @@ module.exports = {
     plugins: [
         // 处理html文件
         new HtmlWebpackPlugin({
-            template: './src/index.html'
+            template: './src/index.html',
+            favicon: './favicon.ico'
         }),
         // 独立css文件
         new ExtractTextPlugin('css/[name].css'),
