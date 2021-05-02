@@ -2,7 +2,7 @@
  * @Author: yuze.xia 
  * @Date: 2021-04-29 16:37:08 
  * @Last Modified by: yuze.xia
- * @Last Modified time: 2021-05-02 14:24:02
+ * @Last Modified time: 2021-05-02 14:33:52
  */
 import React from 'react';
 import { Link, NavLink} from 'react-router-dom';
@@ -20,7 +20,7 @@ class NavSide extends React.Component{
                                 <span>首页</span>
                             </NavLink>
                         </li>
-                        <li class="active">
+                        <li className="active">
                             <Link to="/product">
                                 <i className="fa fa-sitemap"></i> 
                                 <span>商品</span>
@@ -36,7 +36,7 @@ class NavSide extends React.Component{
                                 </li>
                             </ul>
                         </li>
-                        <li class="active">
+                        <li className="active">
                             <Link to="/order">
                                 <i className="fa fa-sitemap"></i> 
                                 <span>订单</span>
@@ -49,7 +49,7 @@ class NavSide extends React.Component{
                                 </li>
                             </ul>
                         </li>
-                        <li class="active">
+                        <li className="active">
                             <Link to="/user">
                                 <i className="fa fa-sitemap"></i> 
                                 <span>用户</span>
