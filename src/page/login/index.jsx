@@ -2,7 +2,7 @@
  * @Author: yuze.xia 
  * @Date: 2021-05-07 09:50:55 
  * @Last Modified by: yuze.xia
- * @Last Modified time: 2021-05-07 11:14:04
+ * @Last Modified time: 2021-05-07 11:31:53
  */
 
 import React from 'react';
@@ -17,18 +17,13 @@ class Login extends React.Component{
             passworld: ''
         }
     }
-    // 处理用户名输入框
-    onUsernameChange(e) {
-        console.log('username:::', e.target.value)
+    // 处理输入框
+    onInputChange(e) {
+        let inputName   = e.target.name,
+            inputValue  = e.target.value;
+        console.log(inputName, inputValue);
         this.setState({
-            username: e.target.value
-        })
-    }
-    // 处理密码输入框
-    onPassworldChange(e) {
-        console.log('passworld:::', e.target.value);
-        this.setState({
-            passworld: e.target.value
+            [inputName]: inputValue
         })
     }
     render() {
@@ -40,15 +35,17 @@ class Login extends React.Component{
                         <form>
                             <div className="form-group">
                                 <input type="email" 
+                                    name="username"
                                     className="form-control" 
                                     placeholder="请输入用户名" 
-                                    onChange={ e => this.onUsernameChange(e)}/>
+                                    onChange={ e => this.onInputChange(e)}/>
                             </div>
                             <div className="form-group">
                                 <input type="password" 
+                                    name="passworld"
                                     className="form-control" 
                                     placeholder="请输入密码" 
-                                    onChange={e => this.onPassworldChange(e)}/>
+                                    onChange={e => this.onInputChange(e)}/>
                             </div>
                             <button type="submit" className="btn btn-lg btn-primary btn-block">登陆</button>
                         </form>
