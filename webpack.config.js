@@ -2,7 +2,7 @@
  * @Author: yuze.xia 
  * @Date: 2021-04-01 15:31:31 
  * @Last Modified by: yuze.xia
- * @Last Modified time: 2021-05-02 15:09:57
+ * @Last Modified time: 2021-05-07 16:47:33
  */
 const path = require('path');
 const webpack = require('webpack');
@@ -21,7 +21,9 @@ module.exports = {
     resolve: {
         alias: { // 文件别名
             page: path.resolve(__dirname, 'src/page'),
-            component: path.resolve(__dirname, 'src/component')
+            component: path.resolve(__dirname, 'src/component'),
+            util: path.resolve(__dirname, 'src/util'),
+            service: path.resolve(__dirname, 'src/service')
         }
     },
     module: {
@@ -109,6 +111,16 @@ module.exports = {
         port: 8086,
         historyApiFallback:{
             index: '/dist/index.html'
+        },
+        proxy: {
+            '/manage': {
+                target: 'http://admintest.happymmall.com/',
+                changeOrigin: true
+            },
+            '/user/logout.do': {
+                target: 'http://admintest.happymmall.com/',
+                changeOrigin: true
+            }
         }
     }
 };
