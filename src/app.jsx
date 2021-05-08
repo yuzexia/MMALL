@@ -2,7 +2,7 @@
  * @Author: yuze.xia 
  * @Date: 2021-04-29 15:03:27 
  * @Last Modified by: yuze.xia
- * @Last Modified time: 2021-05-07 10:11:16
+ * @Last Modified time: 2021-05-08 10:58:39
  */
 
 import React from 'react';
@@ -12,6 +12,7 @@ import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-ro
 // 页面
 import Home from 'page/home/index.jsx';
 import Login from 'page/login/index.jsx';
+import ErrorPage from 'page/error/index.jsx';
 import Layout from 'component/layout/index.jsx';
 
 class App extends React.Component{
@@ -24,10 +25,11 @@ class App extends React.Component{
                         <Layout>
                             <Switch>
                                 <Route exact path="/" component={Home} />
-                                <Route to="/product" componetn={Home} />
-                                <Route to="/product.category" componetn={Home} />
-                                <Route to="/order" componetn={Home} />
-                                <Route to="/user" componetn={Home} />
+                                <Route path="/product" component={Home} />
+                                <Route path="/product.category" component={Home} />
+                                <Route path="/order" component={Home} />
+                                <Route path="/user" component={Home} />
+                                <Route component={ErrorPage}/>
                             </Switch>
                         </Layout>
                     )} />
