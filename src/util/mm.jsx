@@ -2,7 +2,7 @@
  * @Author: yuze.xia 
  * @Date: 2021-05-02 15:15:33 
  * @Last Modified by: yuze.xia
- * @Last Modified time: 2021-05-07 16:26:46
+ * @Last Modified time: 2021-05-08 14:10:07
  */
 class MUtil{
     request(param) {
@@ -12,7 +12,7 @@ class MUtil{
                 url     : param.url         || '',
                 dataType: param.dataType    || 'json',
                 data    : param.data        || null,
-                success(res) {
+                success : res => {
                     console.log(res);
                     if (res.status == 0) {
                         // 
@@ -24,7 +24,7 @@ class MUtil{
                         typeof reject === 'function' && reject(res.msg || res.data);
                     }
                 },
-                error(err) {
+                error   : (err) => {
                     typeof reject === 'function' && reject(err.statusText);
                 }
             })

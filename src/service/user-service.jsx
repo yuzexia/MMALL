@@ -2,7 +2,7 @@
  * @Author: yuze.xia 
  * @Date: 2021-05-07 14:30:04 
  * @Last Modified by: yuze.xia
- * @Last Modified time: 2021-05-07 16:48:02
+ * @Last Modified time: 2021-05-08 14:40:30
  */
 import MUtil from 'util/mm.jsx';
 
@@ -45,6 +45,16 @@ class User{
         return _mm.request({
             type: 'post',
             url: '/user/logout.do'
+        })
+    }
+    // 用户列表
+    getUserList(pageNum) {
+        return _mm.request({
+            type: 'post',
+            url: '/manage/user/list.do',
+            data: {
+                pageNum: pageNum
+            }
         })
     }
 }
