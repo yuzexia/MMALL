@@ -2,7 +2,7 @@
  * @Author: yuze.xia 
  * @Date: 2021-05-02 15:15:33 
  * @Last Modified by: yuze.xia
- * @Last Modified time: 2021-05-08 14:10:07
+ * @Last Modified time: 2021-05-10 14:46:36
  */
 class MUtil{
     request(param) {
@@ -42,6 +42,10 @@ class MUtil{
         
         return result ? decodeURIComponent(result[2]) : null
 
+    }
+    // 成功提示
+    successTips(successMsg) {
+        alert(successMsg || '更改成功！')
     }
     // 错误提示
     errorTips(errMsg) {
