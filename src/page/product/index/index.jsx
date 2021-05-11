@@ -2,7 +2,7 @@
  * @Author: yuze.xia 
  * @Date: 2021-05-10 09:54:01 
  * @Last Modified by: yuze.xia
- * @Last Modified time: 2021-05-10 17:46:26
+ * @Last Modified time: 2021-05-11 15:27:34
  */
 import React from 'react';
 import {Link} from 'react-router-dom';
@@ -25,16 +25,31 @@ class ProductList extends React.Component{
         super(props);
         this.state = {
             pageNum         : 1,
-            list            : []
+            list            : [],
+            listType        : 'list',
+            searchType      : '',
+            searchKeyword   : ''
         }
     }
     // 获取商品列表
     loadProductList() {
-        _product.getProductList(this.state.pageNum).then(res => {
+        let listParam = {};
+        listParam.listType = this.state.listType;
+        listParam.pageNum = this.state.pageNum;
+        
+        // 如果是搜索的话，需要传入searchType,searchKeyword参数
+        if(this.state.listType === 'search') {
+            listParam.searchType = this.state.searchType;
+            listParam.searchKeyword = this.state.searchKeyword;
+        }
+        _product.getProductList(listParam).then(res => {
             this.setState(res, () => {
                 console.log('回调');
             })
         }, errMsg => {
+            this.setState({
+                list: []
+            })
             _mm.errorTips(errMsg);
         })
     }
@@ -62,8 +77,20 @@ class ProductList extends React.Component{
             _mm.errorTips(errMsg)
         })
     }
+    // 搜索事件
+    onSearch(searchType, searchKeyword) {
+        let listType = searchKeyword === '' ? 'list' : 'search';
+        this.setState({
+            pageNum         : 1,
+            listType        : listType,
+            searchType      : searchType,
+            searchKeyword   : searchKeyword
+        }, () => {
+            this.loadProductList();
+        })
+    }
     componentDidMount() {
-        this.loadProductList(this.state.pageNum);
+        this.loadProductList();
     }
     render(){
         let tableHeads = [
@@ -75,8 +102,15 @@ class ProductList extends React.Component{
         ]
         return (
             <div id="page-wrapper">
-                <PageTitle title="商品管理"/>
-                <ListSearch />
+                <PageTitle title="商品列表">
+                    <div className="page-header-right">
+                        <Link to="/product/save" className="btn btn-primary">
+                            <i className="fa fa-plus"></i>
+                            <span>添加商品</span>
+                        </Link>
+                    </div>
+                </PageTitle>
+                <ListSearch onSearch={ (searchType, searchKeyword) => this.onSearch(searchType, searchKeyword)}/>
                 <div className="col-md-12">
                     <TableList tableHeads={ tableHeads }>
                         {

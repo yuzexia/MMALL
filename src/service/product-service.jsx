@@ -10,13 +10,23 @@ let _mm = new MUtil();
 
 class Product {
     // 获取商品列表
-    getProductList(pageNum) {
+    getProductList(listParam) {
+        let url = '',
+            data ={};
+
+        if (listParam.listType === 'list') {
+            url = '/manage/product/list.do'
+            data.pageNum = listParam.pageNum;
+        } else if (listParam.listType === 'search') {
+            url = '/manage/product/search.do'
+            data.pageNum = listParam.pageNum;
+            data[listParam.searchType] = listParam.searchKeyword;
+        }
+
         return _mm.request({
-            type: 'get',
-            url: '/manage/product/list.do',
-            data: {
-                pageNum: pageNum
-            }
+            type: 'post',
+            url: url,
+            data: data
         })
     }
     // 操作商品上下架

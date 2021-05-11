@@ -9,6 +9,7 @@ import {BrowserRouter as Router, Switch, Link, Redirect, Route} from 'react-rout
 
 // 页面
 import ProductList from 'page/product/index/index.jsx';
+import ProductSave from 'page/product/index/save.jsx';
 
 class ProductRouter extends React.Component{
     constructor(props) {
@@ -18,8 +19,9 @@ class ProductRouter extends React.Component{
     render() {
         return (
             <Switch>
-                <Route path="/product/index" component={ProductList}/>
+                <Route path="/product/index" component={ProductList} />
                 <Redirect exact from="/product" to="/product/index" />
+                <Route path="/product/save" component={ProductSave} />
             </Switch>
         )
     }

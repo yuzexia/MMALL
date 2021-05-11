@@ -21,12 +21,18 @@ class ListSearch extends React.Component{
         this.setState({
             [name]: value
         })
-        console.log('object', this.state);
     }
 
     // 点击搜索按钮
     onSearch(e) {
         this.props.onSearch(this.state.searchType, this.state.searchKeyword);
+    }
+    // 输入关键字后按回车，自动提交
+    onSearchkeywordKeyUp(e) {
+        let keyCode = e.keyCode;
+        if (keyCode === 13) {
+            this.onSearch()
+        }
     }
 
     render() {
@@ -41,10 +47,11 @@ class ListSearch extends React.Component{
                     </select>
                 </div>
                 <div className="form-group">
-                    <input type="password" 
+                    <input type="text" 
                             className="form-control" 
                             placeholder="关键词"
                             name="searchKeyword"
+                            onKeyUp={ (e) => {this.onSearchkeywordKeyUp(e)} }
                             onChange={(e) => { this.onValueChange(e) }}/>
                 </div>
                 <button className="btn btn-primary"
