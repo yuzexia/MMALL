@@ -2,16 +2,22 @@
  * @Author: yuze.xia 
  * @Date: 2021-05-11 13:54:08 
  * @Last Modified by: yuze.xia
- * @Last Modified time: 2021-05-11 17:40:29
+ * @Last Modified time: 2021-05-12 16:56:13
  */
 import React from 'react';
 
-
+import MUtil from 'util/mm.jsx';
+import Product from 'service/product-service.jsx';
+import FileUploader from 'util/file-upload/index.jsx';
 import PageTitle from 'component/page-title/index.jsx';
-
+import CategorySelector from './category-selector.jsx';
 class ProductSave extends React.Component{
     constructor(props){
         super(props);
+    }
+
+    onCategoryChange(categoryId, parentCategoryId) {
+        console.log('save::::', categoryId, parentCategoryId);
     }
     render() {
         return(
@@ -33,14 +39,7 @@ class ProductSave extends React.Component{
                     </div>
                     <div className="form-group">
                         <label className="col-md-2 control-label">商品分类</label>
-                        <div className="col-md-10">
-                            <select name="" className="form-control col-md-4">
-                                <option value="">请选择一级分类</option>
-                            </select>
-                            <select name="" className="form-control col-md-4">
-                                <option value="">请选择二级分类</option>
-                            </select>
-                        </div>
+                        <CategorySelector onCategoryChange={(categoryId, parentCategoryId) => {this.onCategoryChange(categoryId, parentCategoryId)}}/>
                     </div>
                     <div className="form-group">
                         <label className="col-md-2 control-label">商品价格</label>
@@ -63,7 +62,7 @@ class ProductSave extends React.Component{
                     <div className="form-group">
                         <label className="col-md-2 control-label">商品图片</label>
                         <div className="col-md-10">
-                            图片
+                            <FileUploader />
                         </div>
                     </div>
                     <div className="form-group">

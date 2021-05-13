@@ -2,7 +2,7 @@
  * @Author: yuze.xia 
  * @Date: 2021-05-10 10:23:05 
  * @Last Modified by: yuze.xia
- * @Last Modified time: 2021-05-10 14:54:52
+ * @Last Modified time: 2021-05-12 15:57:03
  */
 import MUtil from 'util/mm.jsx';
 
@@ -35,6 +35,19 @@ class Product {
             type: 'post',
             url: '/manage/product/set_sale_status.do',
             data: productInfo
+        })
+    } 
+    /**
+     * 品类相关
+     */
+    // 获取分类别表
+    getCategoryList(parentCategoryId) {
+        return _mm.request({
+            type: 'post',
+            url: '/manage/category/get_category.do',
+            data: {
+                categoryId: parentCategoryId || 0
+            }
         })
     }
 }
