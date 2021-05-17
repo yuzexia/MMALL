@@ -565,14 +565,14 @@ class FileUpload extends React.Component{
             render = (
                 <div className={this.props.className} style={this.props.style}>
                     {this.state.before}
-                    <div onClick={this.commonChooseFile}
+                    <div onClick={(e) => this.commonChooseFile(e)}
                         style={{overflow:'hidden',postion:'relative',display:this.wrapperDisplay}}
                     >
                         {this.state.chooseBtn}
                     </div>
                     {this.state.middle}
 
-                    <div onClick={this.commonUpload}
+                    <div onClick={(e) => this.commonUpload(e)}
                         style={{
                             overflow: 'hidden',
                             postion: 'relative',
@@ -583,7 +583,7 @@ class FileUpload extends React.Component{
                     </div>
                     {this.state.after}
                     <input type="file" name="ajax_upload_file_input" ref="ajax_upload_file_input"
-                        style={{display:'none'}} onChange={this.commonChange}
+                        style={{display:'none'}} onChange={(e) => this.commonChange(e)}
                         {...restAttrs}
                     />
                 </div>
@@ -648,7 +648,7 @@ class FileUpload extends React.Component{
 
             const input =
                 <input type="file" name={`ajax_upload_hidden_input_${i}`} id={`ajax_upload_hidden_input_${i}`}
-                    ref={`ajax_upload_hidden_input_${i}`} onChange={this.IEChooseFile} onClick={this.IEBeforeChoose}
+                    ref={`ajax_upload_hidden_input_${i}`} onChange={(e) => this.IEChooseFile(e)} onClick={(e) => this.IEBeforeChoose(e)}
                     style={style} {...restAttrs}
                 />
 
@@ -656,7 +656,7 @@ class FileUpload extends React.Component{
             formArr.push((
                 <form id={`ajax_upload_file_form_${i}`} method="post" target={`ajax_upload_file_frame_${i}`}
                     key={`ajax_upload_file_form_${i}`}
-                    encType="multipart/form-data" ref={`form_${i}`} onSubmit={this.IEUpload}
+                    encType="multipart/form-data" ref={`form_${i}`} onSubmit={(e) => this.IEUpload(e)}
                     style={{display:isShow? 'block':'none'}}
                 >
                     {this.state.before}
