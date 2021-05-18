@@ -2,7 +2,7 @@
  * @Author: yuze.xia 
  * @Date: 2021-05-10 09:53:07 
  * @Last Modified by: yuze.xia
- * @Last Modified time: 2021-05-10 10:01:19
+ * @Last Modified time: 2021-05-18 15:50:59
  */
 import React from 'react';
 import {BrowserRouter as Router, Switch, Link, Redirect, Route} from 'react-router-dom';
@@ -21,7 +21,7 @@ class ProductRouter extends React.Component{
             <Switch>
                 <Route path="/product/index" component={ProductList} />
                 <Redirect exact from="/product" to="/product/index" />
-                <Route path="/product/save" component={ProductSave} />
+                <Route path="/product/save/:pid" component={ProductSave} />
             </Switch>
         )
     }

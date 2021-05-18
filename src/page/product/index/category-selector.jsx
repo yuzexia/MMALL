@@ -2,7 +2,7 @@
  * @Author: yuze.xia 
  * @Date: 2021-05-12 13:57:20 
  * @Last Modified by: yuze.xia
- * @Last Modified time: 2021-05-12 16:49:05
+ * @Last Modified time: 2021-05-18 17:42:59
  */
 import React from 'react';
 
@@ -84,12 +84,38 @@ class CategorySelector extends React.Component{
     componentDidMount() {
         this.loadFirstCategory();
     }
-
+    componentWillReceiveProps(nextProps){
+        let categoryIdChange = this.props.categoryId !== nextProps.categoryId,
+            parentCategoryIdChange = this.props.parentCategoryId !== nextProps.parentCategoryId;
+        // 数据没有变化时，不做处理
+        if(!categoryIdChange && !parentCategoryIdChange) {
+            return ;
+        }
+        // 只有一级品类时
+        if(Number(nextProps.parentCategoryId) === 0 ) {
+            this.setState({
+                firstCategoryId     : nextProps.categoryId,
+                secondCategoryId    : 0
+            }, () => {
+                console.log("object", this.state);
+            })
+        }
+        // 有两级品类
+        else {
+            this.setState({
+                firstCategoryId: nextProps.parentCategoryId,
+                secondCategoryId: nextProps.categoryId
+            }, () => {
+                parentCategoryIdChange && this.loadSecondCategory()
+            })
+        }
+    }
     render(){
         return(
             <div className="col-md-10">
                 <select name="firstCategory" 
                         className="form-control cate-select"
+                        value={this.state.firstCategoryId}
                         onChange={(e) => {this.onFirstCategoryChange(e)}}>
                     <option value="">请选择一级分类</option>
                     {
@@ -100,8 +126,9 @@ class CategorySelector extends React.Component{
                 </select>
                 {
                     this.state.secondCategoryList.length ?
-                        (<select name="secondCategory"
+                        <select name="secondCategory"
                                 className="form-control cate-select"
+                                value={this.state.secondCategoryId}
                                 onChange={(e) => {this.onSecondCategoryChange(e)}}>
                             <option value="">请选择二级分类</option>
                             {
@@ -109,7 +136,7 @@ class CategorySelector extends React.Component{
                                     return <option key={index} value={category.id}>{category.name}</option>
                                 })
                             }
-                        </select>) : null
+                        </select> : null
                 }
             </div>
         )
