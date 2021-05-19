@@ -104,6 +104,7 @@ class Product {
      * 品类相关
      */
     // 获取品类列表
+    // 根据父品类ID获取品类列表
     getCategoryList(parentCategoryId) {
         return _mm.request({
             type: 'post',
@@ -121,6 +122,17 @@ class Product {
             data: {
                 categoryId: category.categoryId,
                 categoryName: category.categoryName
+            }
+        })
+    }
+    // 新增品类
+    addCategory(categoryInfo){
+        return _mm.request({
+            type: 'post',
+            url: '/manage/category/add_category.do',
+            data: {
+                parentId: categoryInfo.parentId || 0 ,
+                categoryName: categoryInfo.categoryName
             }
         })
     }
