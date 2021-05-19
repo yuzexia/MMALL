@@ -2,7 +2,7 @@
  * @Author: yuze.xia 
  * @Date: 2021-05-10 10:23:05 
  * @Last Modified by: yuze.xia
- * @Last Modified time: 2021-05-18 16:12:47
+ * @Last Modified time: 2021-05-19 15:49:13
  */
 import MUtil from 'util/mm.jsx';
 
@@ -103,13 +103,24 @@ class Product {
     /**
      * 品类相关
      */
-    // 获取分类别表
+    // 获取品类列表
     getCategoryList(parentCategoryId) {
         return _mm.request({
             type: 'post',
             url: '/manage/category/get_category.do',
             data: {
                 categoryId: parentCategoryId || 0
+            }
+        })
+    }
+    // 修改品类名称
+    setCategoryName(category) {
+        return _mm.request({
+            type: 'post', 
+            url: '/manage/category/set_category_name.do',
+            data: {
+                categoryId: category.categoryId,
+                categoryName: category.categoryName
             }
         })
     }

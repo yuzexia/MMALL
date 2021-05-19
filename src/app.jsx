@@ -2,7 +2,7 @@
  * @Author: yuze.xia 
  * @Date: 2021-04-29 15:03:27 
  * @Last Modified by: yuze.xia
- * @Last Modified time: 2021-05-10 10:14:10
+ * @Last Modified time: 2021-05-19 14:46:48
  */
 
 import React from 'react';
@@ -25,7 +25,7 @@ class App extends React.Component{
                 <Switch>
                     <Route exact path="/" component={Home} />
                     <Route path="/product" component={ProductRouter} />
-                    <Route path="/product.category" component={ProductRouter} />
+                    <Route path="/product-category" component={ProductRouter} />
                     <Route path="/order" component={Home} />
                     <Route path="/user/index" component={UserList} />
                     <Redirect exact from="/user" to="/user/index"/>
