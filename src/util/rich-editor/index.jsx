@@ -2,12 +2,13 @@
  * @Author: yuze.xia 
  * @Date: 2021-05-18 10:16:47 
  * @Last Modified by: yuze.xia
- * @Last Modified time: 2021-05-18 11:33:04
+ * @Last Modified time: 2021-05-19 10:30:44
  */
 import React from 'react';
 import Simditor from 'simditor';
 
 import 'simditor/styles/simditor.css';
+import './index.less';
 
 // 通用富文本编辑器，依赖于JQuery
 class RichEditor extends React.Component{
@@ -18,7 +19,14 @@ class RichEditor extends React.Component{
     componentDidMount() {
         this.loadEditor();
     }
+    componentWillReceiveProps(nextProps){
+        let detailChange = this.props.defaultDetail !== nextProps.defaultDetail;
 
+        if(!detailChange) {
+            return ;
+        }
+        this.simditor.setValue(nextProps.defaultDetail);
+    }
     loadEditor() {
         let element = this.refs['textarea'];
         this.simditor = new Simditor ({

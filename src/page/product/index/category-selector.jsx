@@ -2,7 +2,7 @@
  * @Author: yuze.xia 
  * @Date: 2021-05-12 13:57:20 
  * @Last Modified by: yuze.xia
- * @Last Modified time: 2021-05-18 17:42:59
+ * @Last Modified time: 2021-05-19 11:25:37
  */
 import React from 'react';
 
@@ -48,6 +48,9 @@ class CategorySelector extends React.Component{
     // 选择一级品类
     onFirstCategoryChange(e) {
         let newValue = e.target.value || 0;
+        if(this.props.readOnly) { 
+            return; 
+        }
         this.setState({
             firstCategoryId     : newValue,
             secondCategoryList  : [],
@@ -61,6 +64,9 @@ class CategorySelector extends React.Component{
     // 选择二级品类
     onSecondCategoryChange(e) {
         let newValue = e.target.value || 0;
+        if(this.props.readOnly) { 
+            return; 
+        }
         this.setState({
             secondCategoryId: newValue
         }, () => {
@@ -96,8 +102,6 @@ class CategorySelector extends React.Component{
             this.setState({
                 firstCategoryId     : nextProps.categoryId,
                 secondCategoryId    : 0
-            }, () => {
-                console.log("object", this.state);
             })
         }
         // 有两级品类
@@ -116,6 +120,7 @@ class CategorySelector extends React.Component{
                 <select name="firstCategory" 
                         className="form-control cate-select"
                         value={this.state.firstCategoryId}
+                        readOnly={this.props.readOnly}
                         onChange={(e) => {this.onFirstCategoryChange(e)}}>
                     <option value="">请选择一级分类</option>
                     {
@@ -129,6 +134,7 @@ class CategorySelector extends React.Component{
                         <select name="secondCategory"
                                 className="form-control cate-select"
                                 value={this.state.secondCategoryId}
+                                readOnly={this.props.readOnly}
                                 onChange={(e) => {this.onSecondCategoryChange(e)}}>
                             <option value="">请选择二级分类</option>
                             {
