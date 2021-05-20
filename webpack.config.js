@@ -2,20 +2,22 @@
  * @Author: yuze.xia 
  * @Date: 2021-04-01 15:31:31 
  * @Last Modified by: yuze.xia
- * @Last Modified time: 2021-05-07 16:47:33
+ * @Last Modified time: 2021-05-20 17:17:09
  */
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+let WEBPACK_ENV = process.env.WEBPACK_ENV || 'dev';
+console.log(WEBPACK_ENV);
 module.exports = {
     // 入口文件
     entry: './src/app.jsx', 
     // 出口文件
     output: {
         path: path.resolve(__dirname, './dist'),
-        publicPath: '/dist/',
+        publicPath: WEBPACK_ENV === 'dev' ? '/dist/' : '/MMall/dist',
         filename: 'js/app.js'
     },
     resolve: {
